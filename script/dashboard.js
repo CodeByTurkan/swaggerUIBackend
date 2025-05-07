@@ -36,9 +36,13 @@ async function showCategory() {
         categoryPage.innerHTML += 
             `
              <div class="w-60 rounded-lg shadow-sm bg-green-800 ">
-                    <a href="#">
+                    <div class ="flex justify-between items-center p-2">
                         <h5 class="mb-2 text-base p-2 font-semibold tracking-tight text-gray-900 dark:text-white">${item.name}</h5>
-                    </a>
+                        <div class="text-white">
+                            <i class="fa-solid fa-pen-to-square mr-2"></i>
+                            <i onclick="delCat(${item.id})" class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
                 </div>
                 `
     })
@@ -77,4 +81,13 @@ async function addNewCategory() {
         catModal.classList.add('hidden')
         await showCategory()
     }
+}
+
+async function delCat(id) {
+    const data = await deleteCategory(id)
+    if (data) {
+        await showCategory()
+        // bunu yazanda artiq refresh etmeye ehtiyac olmur  delete gorsenmesi ucun, deyirsenki bitenden sonra goster.
+    }
+    
 }
