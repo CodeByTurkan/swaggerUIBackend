@@ -55,10 +55,7 @@
         <!-- category modal -->
            <div id="categorySide" class=" my-5 text-center flex gap-3">
                <div id="categoryPage" class="w-[80%] p-3 border border-gray-200 rounded-lg shadow-sm grid grid-cols-3 gap-2">
-                   <!-- dynamic categories -->
-
-                  
-                    
+                   <!-- dynamic categories --> 
                 </div>
                 <div class="w-[20%] ">
                     <button onclick="addModal(1)" class="px-8 py-3 font-semibold border rounded dark:border-gray-800 dark:text-gray-800"><i class="fa-solid fa-plus mr-2"></i> Add Category</button>
@@ -66,7 +63,17 @@
            </div>
            <!-- dynamic  cat modal -->
            <div class="hidden flex justify-center items-center fixed inset-0 z-10 bg-black/50" id="catModal">
+            <div class="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
             
+                <input class="p-3" id="catName" type="text" placeholder="Enter name..."/>
+                <input class="p-3" id="slugName" type="text"placeholder="Enter slug..."/>
+                
+                <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
+                    <button onclick="addModal(-1)" class="px-6 py-2 rounded-sm">No</button>
+                    <button id="yes" onclick="addNewCategory()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Yes</button>
+                    <button id="save" onclick="saveChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Save</button>
+                </div>
+                </div>
             </div>
            <!-- news modal -->
             <div class="hidden" id="newsPage">

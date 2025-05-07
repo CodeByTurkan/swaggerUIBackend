@@ -12,6 +12,8 @@ const newsPage = document.getElementById('newsPage')
 const categoryPage = document.getElementById('categoryPage')
 const categorySide = document.getElementById('categorySide')
 const catModal = document.getElementById('catModal')
+const yes = document.getElementById('yes')
+const save = document.getElementById('save')
 
 
 // change between news and categories
@@ -39,7 +41,7 @@ async function showCategory() {
                     <div class ="flex justify-between items-center p-2">
                         <h5 class="mb-2 text-base p-2 font-semibold tracking-tight text-gray-900 dark:text-white">${item.name}</h5>
                         <div class="text-white">
-                            <i class="fa-solid fa-pen-to-square mr-2"></i>
+                            <i onclick="editModal(${item.id})" class="fa-solid fa-pen-to-square mr-2"></i>
                             <i onclick="delCat(${item.id})" class="fa-solid fa-trash"></i>
                         </div>
                     </div>
@@ -50,32 +52,20 @@ async function showCategory() {
 
 // adding modal for categories
 function addModal(arg) {
+    catName.value = ''
+    slugName.value = ''
     // arg === 1 ? catModal.classList.remove('hidden') : arg === -1 ? catModal.classList.add('hidden') : null
-
     if (arg===1) {
         catModal.classList.remove('hidden')
     }else if (arg === -1) {
         catModal.classList.add('hidden')
     }
-
-    catModal.innerHTML = 
-        `
-            <div class="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
-            
-            <input class="p-3" id="catName" type="text" placeholder="Enter name..."/>
-            <input class="p-3" id="slugName" type="text"placeholder="Enter slug..."/>
-            
-            <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
-                <button onclick="addModal(-1)" class="px-6 py-2 rounded-sm">No</button>
-                <button onclick="addNewCategory()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Yes</button>
-            </div>
-            </div>
-        `
 }
 // adding new categories
 async function addNewCategory() {
     const catName = document.getElementById('catName')
     const slugName = document.getElementById('slugName')
+   
     const data = await postCategory(catName.value, slugName.value)
     if (data) {
         catModal.classList.add('hidden')
@@ -90,4 +80,30 @@ async function delCat(id) {
         // bunu yazanda artiq refresh etmeye ehtiyac olmur  delete gorsenmesi ucun, deyirsenki bitenden sonra goster.
     }
     
+}
+
+let currentId = null
+async function editModal(id) {
+   let categories = await getCategories()
+   let selectedCat = categories?.find(item => item.id == id)
+    
+    
+    catModal.classList.remove('hidden')
+    yes.classList.add('hidden')
+    save.classList.remove('hidden')
+  
+   currentId = id
+    catName.value = selectedCat.name
+    slugName.value = selectedCat.slug
+}
+
+async function saveChanges() {
+    const catName = document.getElementById('catName').value;
+    const slugName = document.getElementById('slugName').value;
+
+    const data = await updateCategory(currentId, catName, slugName);
+    if (data) {
+        catModal.classList.add('hidden');
+        await showCategory();
+    }
 }

@@ -56,3 +56,17 @@ async function deleteCategory(id) {
     .then(res => res.json())
     .then(data => data)
 }
+
+
+
+
+async function updateCategory(id, name, slug) {
+    return fetch(baseUrl + `category/${id}`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ name, slug })
+    }).then(res => res.json());
+}
