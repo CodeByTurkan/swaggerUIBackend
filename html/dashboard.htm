@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashoard</title>
         <link rel="stylesheet" href="../css/output.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         
@@ -52,14 +53,21 @@
         </aside>
        <div class="ml-70">
         <!-- category modal -->
-           <div   id="categoryPage">
-                <div class="w-80 p-3 text-center bg-green-600 border border-gray-200 rounded-lg shadow-sm ">
-                    <i></i> <!-- emoji -->
-                    <a href="#">
-                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
-                    </a>
+           <div id="categorySide" class=" my-5 text-center flex gap-3">
+               <div id="categoryPage" class="w-[80%] p-3 border border-gray-200 rounded-lg shadow-sm grid grid-cols-3 gap-2">
+                   <!-- dynamic categories -->
+
+                  
+                    
+                </div>
+                <div class="w-[20%] ">
+                    <button onclick="addModal(1)" class="px-8 py-3 font-semibold border rounded dark:border-gray-800 dark:text-gray-800"><i class="fa-solid fa-plus mr-2"></i> Add Category</button>
                 </div>
            </div>
+           <!-- dynamic  cat modal -->
+           <div class="hidden flex justify-center items-center fixed inset-0 z-10 bg-black/50" id="catModal">
+            
+            </div>
            <!-- news modal -->
             <div class="hidden" id="newsPage">
                 <div  class="max-w-screen-xl p-5 mx-auto dark:bg-gray-100 dark:text-gray-800">
@@ -84,5 +92,6 @@
        </div>
  
     </body>
+    <script src="../script/service.js"></script>
     <script src="../script/dashboard.js"></script>
 </html>
