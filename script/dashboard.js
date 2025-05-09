@@ -149,3 +149,14 @@ async function getCategoryName() {
 }
 getCategoryName()
 
+
+// add news
+
+async function addNews() {
+    const data = await postNews( title.value,content.value, slug.value, thumbnail.value, category.value)
+    console.log(data);
+    if (data) {
+        newsModal.classList.add('hidden')
+        await showNews()
+    }
+}

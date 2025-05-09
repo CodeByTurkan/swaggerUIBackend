@@ -79,4 +79,15 @@ async function getNews() {
 }
 // add new news
 
-
+async function postNews( title,content, slug, thumbnail,categoryId) {
+    return fetch (baseUrl + 'news',{
+        method: 'POST',
+        headers:{
+            'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        },
+        body: JSON.stringify({title,content, slug, thumbnail,categoryId })  
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
