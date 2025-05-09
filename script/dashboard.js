@@ -65,9 +65,19 @@ function addModal(arg) {
     // arg === 1 ? catModal.classList.remove('hidden') : arg === -1 ? catModal.classList.add('hidden') : null
     if (arg===1) {
         catModal.classList.remove('hidden')
-        newsModal.classList.remove('hidden')
     }else if (arg === -1) {
         catModal.classList.add('hidden')
+    }
+}
+
+function addNewsModal(arg){
+    title.value =''
+    content.value=''
+    slug.value=''
+    thumbnail.value =''
+    if (arg===1) {
+        newsModal.classList.remove('hidden')
+    }else if (arg === -1) {
         newsModal.classList.add('hidden')
     }
 }
@@ -154,6 +164,7 @@ getCategoryName()
 
 async function addNews() {
     const data = await postNews( title.value,content.value, slug.value, thumbnail.value, category.value)
+    // sen optionlari id ile verib,  goruursenki postda birce id var elecen e optionau tapa bilersen
     console.log(data);
     if (data) {
         newsModal.classList.add('hidden')
