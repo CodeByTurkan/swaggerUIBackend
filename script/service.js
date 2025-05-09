@@ -77,8 +77,14 @@ async function getNews() {
     .then(res => res.json()) 
     .then(data => data)
 }
-// add new news
 
+async function getNewsById(id) {
+    return fetch(baseUrl + `news/${id}`) 
+    .then(res => res.json()) 
+    .then(data => data)
+}
+// add new news
+// sen servere dedirseki men sene yeni  news yazacam haniski title ve.s kimi komponentleri olacaq, JS object shorthand ise b izde  name and value eynidirse onda tekce name yazmaq olar.
 async function postNews( title,content, slug, thumbnail,categoryId) {
     return fetch (baseUrl + 'news',{
         method: 'POST',
@@ -87,6 +93,34 @@ async function postNews( title,content, slug, thumbnail,categoryId) {
             'authorization' : `Bearer ${token}`
         },
         body: JSON.stringify({title,content, slug, thumbnail,categoryId })  
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
+
+// deletenews
+async function delNews(id) {
+    return fetch(baseUrl + `news/${id}`,{
+        method: 'DELETE',
+        headers:{
+            'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
+
+// save
+// ne deyissin bilmek ucun id
+async function updateNews(id, title, content, slug, thumbnail, categoryId) {
+    return fetch(baseUrl + `news/${id}`,{
+        method:'POST',
+        headers: {
+             'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        },
+        body: JSON.stringify({title, content, slug, thumbnail, categoryId })
     })
     .then(res => res.json())
     .then(data => data)
