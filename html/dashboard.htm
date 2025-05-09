@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="../css/output.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
-    <body>
+    <body class="flex ">
         
-        <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        <div class=" z-40 w-[20%] max-[640px]:hidden h-screen transition-transform -translate-x-full sm:translate-x-0" >
             <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li onclick="renderPage('category')" >
@@ -50,11 +50,11 @@
                 
             </ul>
             </div>
-        </aside>
-       <div class="ml-70">
-        <!-- category modal -->
+        </div>
+       <div class="w-[80%] min-[640px]:w-[100%]">
+        <!-- category  -->
            <div id="categorySide" class=" my-5 text-center flex gap-3">
-               <div id="categoryPage" class="w-[80%] p-3 border border-gray-200 rounded-lg shadow-sm grid grid-cols-3 gap-2">
+               <div id="categoryPage" class="w-[80%] p-3 border border-gray-200 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  gap-5">
                    <!-- dynamic categories --> 
                 </div>
                 <div class="w-[20%] ">
@@ -75,27 +75,33 @@
                 </div>
                 </div>
             </div>
-           <!-- news modal -->
-            <div class="hidden" id="newsPage">
-                <div  class="max-w-screen-xl p-5 mx-auto dark:bg-gray-100 dark:text-gray-800">
-                    <div class="grid grid-cols-1 gap-5 lg:grid-cols-3 sm:grid-cols-1">
-                        <div class="relative flex items-end justify-start w-full text-left dark:bg-gray-500 bg-center bg-cover h-96" style="background-image: url(&quot;https://source.unsplash.com/random/240x320&quot;);">
-                            <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via- dark:from-gray-300 dark:to-gray-50"></div>
-                            <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
-                                <a rel="noopener noreferrer" href="#" class="px-3 py-2 text-xs font-semibold tracking-wider uppercase dark:text-gray-800 dark:bg-violet-600">Politics</a>
-                                <div class="flex flex-col justify-start text-center dark:text-gray-800">
-                                    <span class="text-3xl font-semibold leading-none tracking-wide">04</span>
-                                    <span class="leading-none uppercase">Aug</span>
-                                </div>
-                            </div>
-                            <h2 class="z-10 p-5">
-                                <a rel="noopener noreferrer" href="#" class="font-medium text-md hover:underline dark:text-gray-800"> Autem sunt tempora mollitia magnam non voluptates</a> 
-                            </h2>
-                        </div>
-                    </div>
+           <!-- news  -->
+            <div class="hidden " id="newsPage">
+                <div class="p-3 flex justify-end w-full">
+                    <button onclick="addModal(1)" class="px-8 py-3 font-semibold border rounded dark:border-gray-800 dark:text-gray-800"><i class="fa-solid fa-plus mr-2"></i> Add News</button>
+                </div>
+                <div id="showAllNews" class=" grid grid-cols-3 gap-5">
+                    <!-- news dynamic -->
+                    
                 </div>
             </div>
-            <!-- end -->
+            <!-- news modal -->
+            <div class="hidden flex justify-center items-center fixed inset-0 z-10 bg-black/50" id="newsModal">
+                <div class="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+                
+                    <input class="p-3" id="title" type="text" placeholder="Enter name..."/>
+                    <input class="p-3" id="content" type="text" placeholder="Enter content..."/>
+                    <input class="p-3" id="slug" type="text"placeholder="Enter slug..."/>
+                    <input class="p-3" id="thumbnail" type="text"placeholder="Enter thumbnail..."/>
+                    <select name="" id="category"></select>
+                    
+                    <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
+                        <button onclick="addModal(-1)" class="px-6 py-2 rounded-sm">No</button>
+                        <button id="yes" onclick="addNewNews()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Yes</button>
+                        <button id="save" onclick="saveNewsChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Save</button>
+                    </div>
+                    </div>
+                </div>
        </div>
  
     </body>

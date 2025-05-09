@@ -38,7 +38,6 @@ async function postCategory(name, slug) {
             name:catName.value,
             slug:slugName.value
         })  
-        
     })
     .then(res => res.json())
     .then(data => data)
@@ -70,3 +69,14 @@ async function updateCategory(id, name, slug) {
         body: JSON.stringify({ name, slug })
     }).then(res => res.json());
 }
+
+
+// news
+async function getNews() {
+    return fetch(baseUrl + 'news') 
+    .then(res => res.json()) 
+    .then(data => data)
+}
+// add new news
+
+

@@ -14,6 +14,13 @@ const categorySide = document.getElementById('categorySide')
 const catModal = document.getElementById('catModal')
 const yes = document.getElementById('yes')
 const save = document.getElementById('save')
+const showAllNews = document.getElementById('showAllNews')
+const newsModal = document.getElementById('newsModal')
+const title = document.getElementById('title')
+const content = document.getElementById('content')
+const slug = document.getElementById('slug')
+const thumbnail = document.getElementById('thumbnail')
+
 
 
 // change between news and categories
@@ -23,6 +30,7 @@ function renderPage(arg) {
 // first afte func work hiden everything and show what you want.
     if (arg === 'news') {
         newsPage.classList.remove('hidden');
+        showNews()
     } else if (arg === 'category') {
         categorySide.classList.remove('hidden');
         showCategory()
@@ -57,8 +65,10 @@ function addModal(arg) {
     // arg === 1 ? catModal.classList.remove('hidden') : arg === -1 ? catModal.classList.add('hidden') : null
     if (arg===1) {
         catModal.classList.remove('hidden')
+        newsModal.classList.remove('hidden')
     }else if (arg === -1) {
         catModal.classList.add('hidden')
+        newsModal.classList.add('hidden')
     }
 }
 // adding new categories
@@ -107,3 +117,35 @@ async function saveChanges() {
         await showCategory();
     }
 }
+
+
+// news
+
+
+async function showNews(){
+    let code = ''
+    const data = await getNews()
+    data.news.map(item => {
+        code += 
+        `
+        <div onclick="showModal()" class="max-w-xs p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-900">
+                    <img src="${item.thumbnail}" alt="" class="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500">
+                    <div class="mt-6 mb-2">
+                        <span class="block text-xs font-medium tracking-widest uppercase dark:text-violet-600">${item.category.name}</span>
+                        <h2 class="text-xl font-semibold tracking-wide">${item.title}</h2>
+                    </div>
+                </div>
+        `
+    })
+    showAllNews.innerHTML = code
+}
+
+async function getCategoryName() {
+    const category = document.getElementById('category')
+    const data = await getCategories()
+    data.map(item => {
+        category.innerHTML += `<option value="${item.id}"> ${item.name}</option>`
+    })
+}
+getCategoryName()
+
