@@ -78,6 +78,7 @@ async function getNews() {
     .then(data => data)
 }
 
+// xeberin content goturmek ucun.
 async function getNewsById(id) {
     return fetch(baseUrl + `news/${id}`) 
     .then(res => res.json()) 
