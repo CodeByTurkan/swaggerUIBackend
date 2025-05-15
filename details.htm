@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News Article - NewsDaily</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+ <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex justify-between items-center w-full md:w-auto">
+        <a href="#" class="text-2xl font-bold text-blue-600">NewsDaily</a>
+      </div>
+
+      <nav class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+        <div class="flex space-x-6 text-sm font-medium text-gray-600">
+          <a href="#" class="hover:text-blue-500">Home</a>
+          <a href="#" class="hover:text-blue-500">World</a>
+          <a href="#" class="hover:text-blue-500">Tech</a>
+          <a href="#" class="hover:text-blue-500">Business</a>
+          <a href="#" class="hover:text-blue-500">Contact</a>
+        </div>
+
+        <!-- Search -->
+        <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden px-2 py-1 bg-gray-50">
+          <input type="text" placeholder="Search..." class="bg-transparent outline-none px-2 py-1 text-sm w-full">
+          <button class="text-gray-500 hover:text-blue-600">
+            🔍
+          </button>
+        </div>
+
+        <!-- Login -->
+        <a href="#" class="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          Login
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Section -->
+  <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded-2xl shadow">
+    
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-4">
+      <a href="#" class="hover:underline">Home</a> /
+      <a href="#" class="hover:underline">Tech</a> /
+      <span class="text-gray-700">AI in News</span>
+    </nav>
+
+    <!-- Article Title -->
+    <h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+      How AI is Transforming the Future of Journalism
+    </h1>
+
+    <!-- Meta Info -->
+    <div class="flex items-center text-sm text-gray-500 space-x-4 mb-6">
+      <div class="flex items-center space-x-2">
+        <img src="https://via.placeholder.com/32" class="w-8 h-8 rounded-full" alt="Author">
+        <span>By Sarah Lin</span>
+      </div>
+      <span>•</span>
+      <time datetime="2025-05-14">May 14, 2025</time>
+      <span>•</span>
+      <span>6 min read</span>
+    </div>
+
+    <!-- Image -->
+    <img src="https://via.placeholder.com/800x400" class="rounded-xl mb-6" alt="News Image">
+
+    <!-- Article Content -->
+    <article class="prose prose-lg max-w-none">
+      <p>Artificial Intelligence is reshaping the media landscape. From drafting news briefs to automating fact-checking, AI tools are changing how newsrooms operate. Many see this as a way to enhance productivity, while others raise concerns about bias and authenticity.</p>
+      
+      <h2>What Role Does AI Play in Newsrooms?</h2>
+      <p>AI is assisting journalists with data analysis, summarization, and even real-time translation. Tools like ChatGPT, Grammarly, and automated video editors are becoming standard in modern media houses.</p>
+      
+      <h2>Risks and Ethical Concerns</h2>
+      <p>Despite benefits, concerns about misinformation, deepfakes, and over-reliance on AI tools remain. Media organizations are now tasked with developing ethical frameworks for using AI responsibly.</p>
+    </article>
+
+    <!-- Tags -->
+    <div class="mt-8">
+      <h3 class="text-sm font-semibold text-gray-700 mb-2">Tags</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">#AI</span>
+        <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">#Journalism</span>
+        <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">#Technology</span>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="my-10 border-gray-300">
+
+    <!-- Comment Section -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Leave a Comment</h3>
+      <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:border-blue-500 mb-4" placeholder="Write your comment..."></textarea>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700">Post Comment</button>
+        <div class="flex gap-4 text-gray-600 text-sm">
+          <button class="flex items-center gap-1 hover:text-blue-600">👍 Like</button>
+          <button class="flex items-center gap-1 hover:text-red-500">👎 Dislike</button>
+        </div>
+      </div>
+
+      <!-- Example Comment -->
+      <div class="mt-8">
+        <div class="flex gap-4 mb-4">
+          <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="User">
+          <div>
+            <div class="font-semibold text-gray-800">Michael R.</div>
+            <p class="text-sm text-gray-700">AI in journalism is inevitable. The key is how we control and guide its usage.</p>
+            <div class="flex gap-3 text-xs text-gray-500 mt-1">
+              <button class="hover:text-blue-600">👍 8</button>
+              <button class="hover:text-red-500">👎 1</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 py-6 text-center text-sm text-gray-500">
+    © 2025 NewsDaily. All rights reserved.
+  </footer>
+
+  <script src="script/service.js"></script>
+  <script src="script/details.js"></script>
+  
+</body>
+</html>

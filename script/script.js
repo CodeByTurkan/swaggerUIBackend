@@ -25,9 +25,8 @@ async function getAllCategories() {
    data.map(item=> {
       categories.innerHTML += 
       `
-      <li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-2 dark:border- dark:text-violet-600 dark:border-violet-600">${item.name}</a>
-			</li>
+     	<a rel="noopener noreferrer" href="#" class=" px-4 mb-1 hover:text-blue-500">${item.name}</a>
+
       `
    })
 }
@@ -41,7 +40,7 @@ async function getAllNews() {
          <div class="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800">
           
             <div>
-            <a href="html/details.htm?id=${item.id}">
+            <a href="details.htm?id=${item.id}">
             <img src="${item.thumbnail}" alt="" class="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500">
             </a>
                <h2 class="mb-1 text-xl font-semibold">${item.title}</h2>
