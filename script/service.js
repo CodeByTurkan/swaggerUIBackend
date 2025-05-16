@@ -148,3 +148,28 @@ async function postComment(newsId, content) {
     .then(data => data)
 }
 
+
+// evvelce action tipini yaradiriq.
+async function likeNews(id, type) {
+    return fetch(baseUrl + `news/${id}/action/${type}`,{
+        method:'POST',
+        headers: {
+             'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
+
+async function viewNews(id, type) {
+    return fetch(baseUrl + `news/${id}/action/${type}`,{
+        method:'POST',
+        headers: {
+             'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
