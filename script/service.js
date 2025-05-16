@@ -1,5 +1,6 @@
 
 let baseUrl = 'https://news.drafts.az/api/'
+
 // enter login info
 async function login(username, password) {
     return fetch(baseUrl + 'auth/login',{
@@ -126,3 +127,24 @@ async function updateNews(id, title, content, slug, thumbnail, categoryId) {
     .then(res => res.json())
     .then(data => data)
 }
+
+
+async function getComment() {
+     return fetch(baseUrl + `news/${newsId}/comments`)
+    .then(res => res.json())
+    .then(data => data)
+}
+
+async function postComment(newsId, content) {
+     return fetch(baseUrl + `news/${newsId}/comments`,{
+        method:'POST',
+        headers: {
+             'content-type' : 'application/json',
+            'authorization' : `Bearer ${token}`
+        },
+        body: JSON.stringify({content})
+    })
+    .then(res => res.json())
+    .then(data => data)
+}
+

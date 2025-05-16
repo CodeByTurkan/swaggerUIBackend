@@ -163,9 +163,6 @@ async function showNews(){
                 </div>
             </div>
          </div>
-
-
-                 
         `
         
     })
