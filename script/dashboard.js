@@ -46,15 +46,14 @@ async function showCategory() {
     data.map(item => {
         categoryPage.innerHTML += 
             `
-             <div class="w-60 rounded-lg shadow-sm bg-green-800 ">
-                    <div class ="flex justify-between items-center p-2">
-                        <h5 class="mb-2 text-base p-2 font-semibold tracking-tight text-gray-900 dark:text-white">${item.name}</h5>
-                        <div class="text-white">
-                            <i onclick="editModal(${item.id})" class="fa-solid fa-pen-to-square mr-2"></i>
-                            <i onclick="delCat(${item.id})" class="fa-solid fa-trash"></i>
-                        </div>
+               <div class="bg-blue-900 text-white  p-4 min-w-[150px] min-h-[150px] rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300 flex flex-col justify-center items-center">
+                    <span class="text-lg font-semibold pb-3">${item.name}</span>
+                    <div class="flex gap-2">
+                        <i onclick="editModal(${item.id})" class="fa-solid fa-pen-to-square hover:text-blue-300 cursor-pointer"></i>
+                        <i onclick="delCat(${item.id})" class="fa-solid fa-trash hover:text-red-400 cursor-pointer"></i>
                     </div>
                 </div>
+
                 `
     })
 }
@@ -143,19 +142,32 @@ async function showNews(){
     data.news.map(item => {
         code += 
         `
-        <div class="max-w-xs p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-900">
-                    <img src="${item.thumbnail}" alt="" class="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500">
-                    <div class="mt-6 mb-2">
-                        <span class="block text-xs font-medium tracking-widest uppercase dark:text-violet-600">${item.category.name}</span>
-                        <h2 class="text-xl font-semibold tracking-wide">${item.title}</h2>
-                    </div>
-                    <div class="flex justify-between mt-3">
-                       <button onclick="showModalEdit(${item.id})"  type="button" class="px-8 py-2 font-semibold rounded-full bg-green-600 dark:text-gray-100">EDIT</button>
-                       <button onclick="deleteNews(${item.id})" type="button" class="px-8 py-2 font-semibold rounded-full bg-pink-600 dark:text-gray-100">DELETE</button>
-                        
-                     </div>
+        <div class="flex flex-col justify-between max-w-lg mx-4 rounded-2xl shadow-md overflow-hidden dark:bg-gray-50 dark:text-gray-800">
+            <img src="${item.thumbnail}" alt="" class="object-cover w-full h-52 sm:h-60  dark:bg-gray-500" />
+             <div class="flex flex-col flex-grow justify-between p-6">
+                <div>
+                    <span class="text-xs font-semibold text-blue-700 uppercase tracking-widest">${item.category.name}</span>
+                    <h2 class="mt-2 text-lg font-bold text-gray-900">${item.title}</h2>
                 </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-between mt-6 pt-4 border-t border-gray-200">
+                    <button onclick="showModalEdit(${item.id})" type="button"
+                        class="px-7 py-2 text-sm font-semibold rounded-full bg-blue-800 text-white hover:bg-blue-900 transition">
+                        Edit
+                    </button>
+                    <button onclick="deleteNews(${item.id})" type="button"
+                        class="px-6 py-2 text-sm font-semibold rounded-full bg-pink-600 text-white hover:bg-pink-700 transition">
+                        Delete
+                    </button>
+                </div>
+            </div>
+         </div>
+
+
+                 
         `
+        
     })
     showAllNews.innerHTML = code
 }

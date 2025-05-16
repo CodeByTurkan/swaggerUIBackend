@@ -7,11 +7,19 @@
         <link rel="stylesheet" href="../css/output.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
-    <body class="flex ">
-        
-        <div class=" z-40 w-[20%] max-[640px]:hidden h-screen transition-transform -translate-x-full sm:translate-x-0" >
-            <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+    <body class="flex h-screen">
+        <!-- umumi framin height teyin etmek lazimdirki icindeki elementleride ede bilek. -->
+        <div class="z-40  w-1/5 max-[640px]:hidden h-screen transition-transform -translate-x-full sm:translate-x-0" >
+            <div class="h-full px-3 py-4  bg-gray-50 dark:bg-gray-900">
             <ul class="space-y-2 font-medium">
+                   <li >
+                    <a href="../index.htm" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                        <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">User's Page</span>
+                    </a>
+                </li>
                 <li onclick="renderPage('category')" >
                     <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -51,15 +59,20 @@
             </ul>
             </div>
         </div>
-       <div class="w-[80%] min-[640px]:w-[100%]">
+       <div class="min-[640px]:w-[100%] overflow-y-scroll h-screen">
         <!-- category  -->
-           <div id="categorySide" class=" my-5 text-center flex gap-3">
-               <div id="categoryPage" class="w-[80%] p-3 border border-gray-200 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  gap-5">
+           <div id="categorySide" class="my-2 text-center  gap-3">
+                <div  class="flex justify-end  px-3">
+                    <div onclick="addModal(1)" class="font-semibold border-2 px-3 py-2  rounded-full dark:border-gray-800 dark:text-gray-800">
+                         <i class="fa-solid fa-plus p-1 mr-2"></i>
+                            <span>Add </span>   
+                    </div>
+                </div>
+            
+               <div id="categoryPage" class="p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-5">
                    <!-- dynamic categories --> 
                 </div>
-                <div class="w-[20%] ">
-                    <button onclick="addModal(1)" class="px-8 py-3 font-semibold border rounded dark:border-gray-800 dark:text-gray-800"><i class="fa-solid fa-plus mr-2"></i> Add Category</button>
-                </div>
+                
            </div>
            <!-- dynamic  cat modal -->
            <div class="hidden flex justify-center items-center fixed inset-0 z-10 bg-black/50" id="catModal">
@@ -70,17 +83,20 @@
                 
                 <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
                     <button onclick="addModal(-1)" class="px-6 py-2 rounded-sm">No</button>
-                    <button id="yes" onclick="addNewCategory()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Yes</button>
-                    <button id="save" onclick="saveChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Save</button>
+                    <button id="yes" onclick="addNewCategory()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-blue-900 dark:text-gray-50">Yes</button>
+                    <button id="save" onclick="saveChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-blue-900 dark:text-gray-50">Save</button>
                 </div>
                 </div>
             </div>
            <!-- news  -->
             <div class="hidden " id="newsPage">
-                <div class="p-3 flex justify-end w-full">
-                    <button onclick="addNewsModal(1)" class="px-8 py-3 font-semibold border rounded dark:border-gray-800 dark:text-gray-800"><i class="fa-solid fa-plus mr-2"></i> Add News</button>
+                <div  class="flex justify-end py-2 px-3 ">
+                    <div onclick="addNewsModal(1)" class="font-semibold border-2 px-3 py-2  rounded-full dark:border-gray-800 dark:text-gray-800">
+                         <i class="fa-solid fa-plus p-1 mr-2"></i>
+                            <span>Add </span>   
+                    </div>
                 </div>
-                <div id="showAllNews" class=" grid grid-cols-3 gap-5">
+                <div id="showAllNews" class=" grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <!-- news dynamic -->
                     
                 </div>
@@ -98,8 +114,8 @@
                     
                     <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
                         <button onclick="addNewsModal(-1)" class="px-6 py-2 rounded-sm">No</button>
-                        <button id="yesNews" onclick="addNews()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Yes</button> 
-                        <button id="saveNews" onclick="saveNewsChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-violet-600 dark:text-gray-50">Save</button>
+                        <button id="yesNews" onclick="addNews()" class="px-6 py-2 rounded-sm shadow-sm dark:bg-blue-900 dark:text-gray-50">Yes</button> 
+                        <button id="saveNews" onclick="saveNewsChanges()" class="hidden px-6 py-2 rounded-sm shadow-sm dark:bg-blue-900 dark:text-gray-50">Save</button>
                     </div>
                     </div>
                 </div>
