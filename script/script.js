@@ -26,17 +26,26 @@ async function getAllCategories() {
    data.map(item=> {
       categories.innerHTML += 
       `
-     	<a rel="noopener noreferrer" href="#" class=" px-4 mb-1 hover:text-blue-500">${item.name}</a>
+     	<a onclick="soloCategory('${item.name}')" rel="noopener noreferrer" href="#" class=" px-4 mb-1 hover:text-blue-500">${item.name}</a>
 
       `
    })
 }
 getAllCategories()
 
-async function getAllNews() {
+async function soloCategory(name) {
+   let data = await getNews()
+   let filteredNews = data.news.filter(item => item.category.name == name)
+    await getAllNews(filteredNews)
+   
+   
+}
+
+async function getAllNews(filteredNews) {
    let code = ''
    // kohne xeberi silki sehife referesh olmur amma hemen box/div ici temizlenir ve ust uste yigilmasin
-   let data = await getNews()
+   let data = filteredNews ? { news: filteredNews } : await getNews()
+   // eger arg varsa news map olunsun, butun xeberler
    data.news.map(item => {
       code += 
          `
@@ -46,6 +55,7 @@ async function getAllNews() {
                   <img src="${item.thumbnail}" alt="" class="object-cover w-full  h-full dark:bg-gray-500">
                   </a>  
                   <div class="px-6 py-2">
+                     <button class="mb-2 border text-[#243f7e] border-[#243e7e] bg-[#e0e7f4] px-4 py-2 rounded-2xl text-base font-semibold">${item.category.name}</button>
                      <h2 class="mb-1 text-xl font-semibold">${item.title}</h2>
                   </div>
             </div>
@@ -82,12 +92,9 @@ async function getAllNews() {
          `
    })
    allNews.innerHTML = code
-    
 }
 
-
 getAllNews()
-
 
 
 // yaranma clikcden sonra olur so ..
@@ -97,3 +104,6 @@ async function likeIt(id, type ) {
       await getAllNews()
    }
 }
+
+
+
