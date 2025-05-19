@@ -1,8 +1,8 @@
 
 let baseUrl = 'https://news.drafts.az/api/'
-
+let token = localStorage.getItem('token')
 // enter login info
-async function login(username, password) {
+export async function login(username, password) {
     return fetch(baseUrl + 'auth/login',{
         method:'POST',
         headers:    
@@ -20,7 +20,7 @@ async function login(username, password) {
 }
 
 // categories create
-async function getCategories() {
+export async function getCategories() {
     return fetch(baseUrl + 'category') 
     .then(res => res.json()) 
     .then(data => data)
@@ -28,7 +28,7 @@ async function getCategories() {
 }
 
 // add new category
-async function postCategory(name, slug) {
+export async function postCategory(name, slug) {
     return fetch (baseUrl + 'category',{
         method: 'POST',
         headers:{
@@ -45,7 +45,7 @@ async function postCategory(name, slug) {
 }
 
 // delete category
-async function deleteCategory(id) {
+export async function deleteCategory(id) {
     return fetch(baseUrl + `category/${id}`,{
         method: 'DELETE',
         headers: {
@@ -60,7 +60,7 @@ async function deleteCategory(id) {
 
 
 
-async function updateCategory(id, name, slug) {
+export async function updateCategory(id, name, slug) {
     return fetch(baseUrl + `category/${id}`, {
         method: 'POST',
         headers: {
@@ -73,21 +73,21 @@ async function updateCategory(id, name, slug) {
 
 
 // news
-async function getNews() {
+export async function getNews() {
     return fetch(baseUrl + 'news') 
     .then(res => res.json()) 
     .then(data => data)
 }
 
 // xeberin content goturmek ucun.
-async function getNewsById(id) {
+export async function getNewsById(id) {
     return fetch(baseUrl + `news/${id}`) 
     .then(res => res.json()) 
     .then(data => data)
 }
 // add new news
 // sen servere dedirseki men sene yeni  news yazacam haniski title ve.s kimi komponentleri olacaq, JS object shorthand ise b izde  name and value eynidirse onda tekce name yazmaq olar.
-async function postNews( title,content, slug, thumbnail,categoryId) {
+export async function postNews( title,content, slug, thumbnail,categoryId) {
     return fetch (baseUrl + 'news',{
         method: 'POST',
         headers:{
@@ -101,7 +101,7 @@ async function postNews( title,content, slug, thumbnail,categoryId) {
 }
 
 // deletenews
-async function delNews(id) {
+export async function delNews(id) {
     return fetch(baseUrl + `news/${id}`,{
         method: 'DELETE',
         headers:{
@@ -115,7 +115,7 @@ async function delNews(id) {
 
 // save
 // ne deyissin bilmek ucun id
-async function updateNews(id, title, content, slug, thumbnail, categoryId) {
+export async function updateNews(id, title, content, slug, thumbnail, categoryId) {
     return fetch(baseUrl + `news/${id}`,{
         method:'POST',
         headers: {
@@ -129,13 +129,13 @@ async function updateNews(id, title, content, slug, thumbnail, categoryId) {
 }
 
 
-async function getComment() {
+export async function getComment() {
      return fetch(baseUrl + `news/${newsId}/comments`)
     .then(res => res.json())
     .then(data => data)
 }
 
-async function postComment(newsId, content) {
+export async function postComment(newsId, content) {
      return fetch(baseUrl + `news/${newsId}/comments`,{
         method:'POST',
         headers: {
@@ -150,7 +150,7 @@ async function postComment(newsId, content) {
 
 
 // evvelce action tipini yaradiriq.
-async function likeNews(id, type) {
+export async function likeNews(id, type) {
     return fetch(baseUrl + `news/${id}/action/${type}`,{
         method:'POST',
         headers: {
@@ -162,7 +162,7 @@ async function likeNews(id, type) {
     .then(data => data)
 }
 
-async function viewNews(id, type) {
+export async function viewNews(id, type) {
     return fetch(baseUrl + `news/${id}/action/${type}`,{
         method:'POST',
         headers: {

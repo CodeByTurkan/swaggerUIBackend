@@ -1,5 +1,6 @@
-let token = localStorage.getItem('token')
+import { deleteCategory, delNews, getCategories, getNews, getNewsById, postCategory, postNews, updateCategory, updateNews } from "./service.js"
 
+let token = localStorage.getItem('token')
 if (!token) {
     location.href = 'login.htm'
 }
@@ -8,6 +9,9 @@ function logOut() {
     localStorage.clear()
     location.href = 'login.htm'
 }
+window.logOut = logOut
+// onclick olanlar 
+
 const newsPage = document.getElementById('newsPage')
 const categoryPage = document.getElementById('categoryPage')
 const categorySide = document.getElementById('categorySide')
@@ -37,6 +41,9 @@ function renderPage(arg) {
         categorySide.classList.remove('hidden');
     }
 }
+
+window.renderPage = renderPage
+
 showCategory()
 // show categories on the screen
 async function showCategory() {
@@ -70,6 +77,8 @@ function addModal(arg) {
     }
 }
 
+window.addModal = addModal
+
 
 // adding new categories
 async function addNewCategory() {
@@ -82,6 +91,7 @@ async function addNewCategory() {
         await showCategory()
     }
 }
+window.addNewCategory = addNewCategory
 
 async function delCat(id) {
     const data = await deleteCategory(id)
@@ -91,6 +101,7 @@ async function delCat(id) {
     }
     
 }
+window.delCat = delCat
 
 let currentId = null
 async function editModal(id) {
@@ -106,7 +117,7 @@ async function editModal(id) {
     catName.value = selectedCat.name
     slugName.value = selectedCat.slug
 }
-
+window.editModal = editModal
 async function saveChanges() {
     const catName = document.getElementById('catName').value;
     const slugName = document.getElementById('slugName').value;
@@ -117,6 +128,7 @@ async function saveChanges() {
         await showCategory();
     }
 }
+window.saveChanges = saveChanges
 
 // modal for news
 function addNewsModal(arg){
@@ -131,7 +143,7 @@ function addNewsModal(arg){
         newsModal.classList.add('hidden')
     }
 }
-
+window.addNewsModal = addNewsModal
 
 // news
 // once sistemde olan xeberleri uze cixaaririq , servicede get edewndne sonra.
@@ -191,7 +203,7 @@ async function addNews() {   //bura ise istifadecinin inputdannalinan melumatlar
         await showNews()
     }
 }
-
+window.addNews = addNews
 
 /*  If you're getting a "Bad Request":
 That likely means:
@@ -213,6 +225,7 @@ async function deleteNews(id) {
         await showNews()
     }
 }
+window.deleteNews = deleteNews
 
 let thisId = null
 async function showModalEdit(id) {
@@ -229,7 +242,7 @@ async function showModalEdit(id) {
     thumbnail.value = response.thumbnail
     category.value = response.category
 } 
-
+window.showModalEdit = showModalEdit
 async function saveNewsChanges() {
     const data = await updateNews( thisId, title.value,content.value, slug.value, thumbnail.value, category.value)
     if (data) {
@@ -237,4 +250,4 @@ async function saveNewsChanges() {
         await showNews()
     }
 }
-
+window.saveNewsChanges = saveNewsChanges

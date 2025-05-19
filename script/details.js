@@ -1,3 +1,5 @@
+import { getCategories, getNewsById, postComment } from "./service.js"
+
 const params = new URLSearchParams(location.search).get('id')
 const token = localStorage.getItem('token') 
 // men burda getnewsdan id aldim get eledim, indi onu birde datadan cagirmaga ehtiyac yoxdu
@@ -9,12 +11,13 @@ const content = document.getElementById('content')
 // define content
 
 async function getAllCategories() {
-   let data = await getCategories()
+   let data = await getCategories() 
    data.map(item=> {
+    console.log(item);
+    
       categories.innerHTML += 
       `
-     	<a rel="noopener noreferrer" href="#" class=" px-4 mb-1 hover:text-blue-500">${item.name}</a>
-
+     	<a href="index.htm?category=${item.name} rel="noopener noreferrer" href="#" class=" px-4 mb-1 hover:text-blue-500">${item.name}</a>
       `
    })
 }
@@ -94,6 +97,9 @@ async function getComments() {
        await getDetails()
     }
 }
+
+window.getComments = getComments
+
 async function addComment() {
     const data = await postComment(params, content.value)   
     if (data) {
@@ -101,3 +107,4 @@ async function addComment() {
        content.value = ''
     }
 }
+window.addComment = addComment
