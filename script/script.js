@@ -9,6 +9,9 @@ const categories = document.getElementById('categories')
 const allNews = document.getElementById('allNews')
 const count = document.getElementsByClassName('count')
 const token = localStorage.getItem('token')
+
+
+
 // verifications of value and token(key/provide permission)
 async function signIn() { //yartdigini alir show / netice
     const data = await login(username.value, password.value)
@@ -21,6 +24,20 @@ async function signIn() { //yartdigini alir show / netice
     }
 }
 window.signIn = signIn
+
+// filter category from details
+const params = new URLSearchParams(location.search)
+let cat = params.get('category').replace(" rel=","")
+
+async function filtered(){
+   const data = await getNews()
+   console.log(data);
+   allNews.innerHTML = ""
+   let filteredCat = data && data.news.filter(item => item.category.name == cat)
+   getAllNews(filteredCat)
+}
+filtered()
+
 
 
 async function getAllCategories() {
@@ -41,16 +58,6 @@ async function soloCategory(name) {
 }
 window.soloCategory = soloCategory
 
-const params = new URLSearchParams(location.search)
-let cat = params.get('category').replace(" rel=","")
-
-async function filtered(){
-   const data = await getNews()
-   console.log(data);
-   allNews.innerHTML = ""
-   data && data.news.filter(item => item.category.name == cat).map(elem => allNews.innerHTML += `<div>${elem.title}</div>`)
-}
-filtered()
 
 
 
